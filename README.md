@@ -40,7 +40,7 @@ Para transformar el texto limpio en un formato numérico que el modelo pueda pro
 
 - **Longitud del Mensaje:** Añadimos la longitud del mensaje preprocesado como una característica numérica adicional. Esta característica resultó ser muy potente, ya que los mensajes de spam suelen tener longitudes muy diferentes a los mensajes legítimos.
 
-## 🧠 DESARROLLO Y EVALUACIÓN D ELOS MODELOS
+## 🧠 DESARROLLO Y EVALUACIÓN DE LOS MODELOS
 
 A lo largo del proyecto, exploramos diferentes algoritmos de Machine Learning:
 
@@ -73,7 +73,7 @@ El objetivo final era hacer que nuestro modelo fuera accesible.
 ¡Si quieres ver esta API en acción, sigue estos sencillos pasos!
 
 - **1. Requisitos Previos**
-- 
+  
 Necesitarás tener Docker Desktop (para Windows/macOS) o Docker Engine (para Linux) instalado en tu sistema. Puedes descargarlo desde docker.com.
 
 _Nota: También puedes optar por ejecutar Docker dentro de una máquina virtual (VM) con un sistema operativo Linux (como Ubuntu), tal como se hizo en el desarrollo de este proyecto. Esto proporciona un entorno aislado y controlado para Docker._  
@@ -97,38 +97,52 @@ docker build -t spam-detector-api .
 
 Este proceso puede tardar unos minutos la primera vez, ya que Docker necesita descargar las capas necesarias.
 
-4. Lanzar el Contenedor Docker
+- **4. Lanzar el Contenedor Docker**
+  
 Una vez que la imagen se haya construido con éxito, lanza el contenedor. Esto iniciará tu API de Flask en el puerto 5000 de tu máquina.
 
+```
 docker run -p 5000:5000 spam-detector-api
+```
 
 Verás los mensajes de inicio de Flask en tu terminal. Deja esta terminal abierta, ya que es donde se está ejecutando la API.
 
-5. Probar la API
+- **5. Probar la API**
+  
 Ahora, abre una segunda terminal (o usa una herramienta como Postman o Insomnia) para enviar solicitudes a tu API.
 
 La API espera solicitudes POST a la ruta /classify_sms con un cuerpo JSON que contenga la clave "message".
 
-Ejemplo de Mensaje SPAM (usando curl):
+**Ejemplo de Mensaje SPAM (usando curl):**
+
+```
 curl -X POST -H "Content-Type: application/json" -d '{ "message": "Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C'\''s apply." }' http://localhost:5000/classify_sms
+```
 
 Respuesta esperada:
 
+```
 {
   "original_message": "Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply.",
   "prediction": "SPAM",
   "preprocessed_message": "free entri wkli comp win fa cup final tkt st may text fa receiv entri question std txt rate c appli"
 }
+```
 
 Ejemplo de Mensaje HAM (No Spam) (usando curl):
+
+```
 curl -X POST -H "Content-Type: application/json" -d '{ "message": "Hey, how are you doing today? Let'\''s catch up soon." }' http://localhost:5000/classify_sms
+```
 
 Respuesta esperada:
 
+```
 {
   "original_message": "Hey, how are you doing today? Let's catch up soon.",
   "prediction": "HAM",
   "preprocessed_message": "hey do today let catch soon"
 }
+```
 
 ¡Y eso es todo! ¡Ya tienes tu API de detección de spam funcionando localmente!
