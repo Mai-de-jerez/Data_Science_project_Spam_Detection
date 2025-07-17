@@ -72,13 +72,13 @@ El objetivo final era hacer que nuestro modelo fuera accesible.
 
 ¡Si quieres ver esta API en acción, sigue estos sencillos pasos!
 
-- **1. Requisitos Previos**
+**1. Requisitos Previos**
   
 Necesitarás tener Docker Desktop (para Windows/macOS) o Docker Engine (para Linux) instalado en tu sistema. Puedes descargarlo desde docker.com.
 
 _Nota: También puedes optar por ejecutar Docker dentro de una máquina virtual (VM) con un sistema operativo Linux (como Ubuntu), tal como se hizo en el desarrollo de este proyecto. Esto proporciona un entorno aislado y controlado para Docker._  
 
-- **2. Clonar el Repositorio**
+**2. Clonar el Repositorio**
   
 Abre tu terminal (o Git Bash/PowerShell en Windows) y clona este repositorio:
 
@@ -87,7 +87,7 @@ git clone https://github.com/Mai-de-jerez/Data_Science_project_Spam_Detection.gi
 cd Data_Science_project_Spam_Detectio
 ```
 
-- **3. Construir la Imagen Docker**
+**3. Construir la Imagen Docker**
   
 Una vez dentro de la carpeta del proyecto, construye la imagen Docker. Este comando descargará la imagen base de Python, instalará todas las dependencias (incluyendo scikit-learn, nltk, numpy, scipy, flask, joblib) y descargará los datos de NLTK necesarios.
 
@@ -97,7 +97,7 @@ docker build -t spam-detector-api .
 
 Este proceso puede tardar unos minutos la primera vez, ya que Docker necesita descargar las capas necesarias.
 
-- **4. Lanzar el Contenedor Docker**
+**4. Lanzar el Contenedor Docker**
   
 Una vez que la imagen se haya construido con éxito, lanza el contenedor. Esto iniciará tu API de Flask en el puerto 5000 de tu máquina.
 
@@ -107,7 +107,7 @@ docker run -p 5000:5000 spam-detector-api
 
 Verás los mensajes de inicio de Flask en tu terminal. Deja esta terminal abierta, ya que es donde se está ejecutando la API.
 
-- **5. Probar la API**
+**5. Probar la API**
   
 Ahora, abre una segunda terminal (o usa una herramienta como Postman o Insomnia) para enviar solicitudes a tu API.
 
